@@ -2,6 +2,9 @@
 **/.env*
 !.env.example
 
+# Data
+data/
+
 # compiled output
 /dist
 /node_modules
