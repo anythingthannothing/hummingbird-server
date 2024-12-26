@@ -2,6 +2,11 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 
+import {
+  AccountEntity,
+  RefreshTokenEntity,
+  UserEntity,
+} from '../../../infra/entities';
 import { mysqlEnv } from '../envs';
 import serverEnv from '../envs/server.env';
 
@@ -25,7 +30,7 @@ export class MysqlConfigService implements TypeOrmOptionsFactory {
       synchronize: this.serverConfig.env !== 'production',
       logging: process.env.NODE_ENV !== 'test',
       poolSize: this.mysqlConfig.poolSize,
-      entities: [],
+      entities: [AccountEntity, UserEntity, RefreshTokenEntity],
       supportBigNumbers: true,
       bigNumberStrings: true,
     };
