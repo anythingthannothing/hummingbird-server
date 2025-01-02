@@ -10,6 +10,7 @@ import { CreateUserRepository } from '../../infra/repositories/user';
 import { DbContextProvider, UnitOfWorkProvider } from '../shared/providers';
 import { GoogleLoginController } from './controllers';
 import { GoogleLoginService } from './services';
+import { JwtTokenProvider } from './providers/jwt-token.provider';
 
 const controllers = [GoogleLoginController];
 
@@ -26,6 +27,6 @@ const repositories = [
 @Module({
   imports: [TypeOrmModule.forFeature([AccountEntity, UserEntity])],
   controllers,
-  providers: [...services, ...repositories, ...providers],
+  providers: [...services, ...repositories, ...providers, JwtTokenProvider],
 })
 export class AuthModule {}
