@@ -22,18 +22,23 @@ export class RefreshTokenGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest() as Request;
 
-    const token = request.headers.authorization;
+    const accessToken = request.headers.authorization;
+    const refreshToken = request.headers.refreshtoken;
 
-    if (!token || !request.body.refreshToken) {
+    if (!accessToken || !refreshToken) {
       throw new UnauthorizedException();
     }
 
     try {
-      const payload = await this.jwtProvider.decode(token);
+      const payload = await this.jwtProvider.decode(accessToken);
+
+      if (!payload) {
+        return false;
+      }
 
       const isVerified = await this.refreshTokenProvider.verify({
         userId: payload.userId,
-        token: request.body.refreshToken as string,
+        token: refreshToken as string,
       });
 
       if (!isVerified) {

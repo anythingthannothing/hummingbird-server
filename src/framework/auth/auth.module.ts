@@ -14,11 +14,12 @@ import {
   GetRefreshTokenRepository,
 } from '../../infra/repositories';
 import { DbContextProvider, UnitOfWorkProvider } from '../shared/providers';
-import { GoogleLoginController } from './controllers';
+import { GoogleLoginController, RefreshTokenController } from './controllers';
+import { AccessTokenGuard } from './guards';
 import { JwtTokenProvider, RefreshTokenProvider } from './providers';
 import { GoogleLoginService } from './services';
 
-const controllers = [GoogleLoginController];
+const controllers = [GoogleLoginController, RefreshTokenController];
 
 const services = [GoogleLoginService];
 
