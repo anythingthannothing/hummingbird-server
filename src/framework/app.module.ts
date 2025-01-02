@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { RouterModule } from '@nestjs/core';
+import { APP_GUARD, RouterModule } from '@nestjs/core';
 
 import { AppConfigModule } from './app-config/app-config.module';
 import { AuthModule } from './auth/auth.module';
+import { AccessTokenGuard } from './auth/guards';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -12,5 +13,6 @@ import { UserModule } from './user/user.module';
     UserModule,
     RouterModule.register([{ path: 'auth', children: [AuthModule] }]),
   ],
+  providers: [{ provide: APP_GUARD, useClass: AccessTokenGuard }],
 })
 export class AppModule {}

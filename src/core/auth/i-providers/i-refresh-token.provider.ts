@@ -1,7 +1,6 @@
 export class VerifyRefreshTokenInput {
   userId: number;
   token: string;
-  expiresAt: number;
 }
 
 export interface IRefreshTokenProvider {

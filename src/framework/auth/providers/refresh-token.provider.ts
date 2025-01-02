@@ -5,6 +5,7 @@ import {
   IRefreshTokenProvider,
   VerifyRefreshTokenInput,
 } from '../../../core/auth';
+import { generateRandomString } from '../../../core/lib';
 import {
   ICreateRefreshTokenRepository,
   IGetRefreshTokenRepository,
@@ -14,7 +15,6 @@ import {
   GetRefreshTokenRepository,
 } from '../../../infra/repositories';
 import { tokenEnv } from '../../app-config/envs';
-import { generateRandomString } from '../../shared/lib';
 
 @Injectable()
 export class RefreshTokenProvider implements IRefreshTokenProvider {

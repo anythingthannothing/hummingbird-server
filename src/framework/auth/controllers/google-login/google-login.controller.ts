@@ -8,6 +8,7 @@ import {
   IRefreshTokenProvider,
 } from '../../../../core/auth';
 import { tokenEnv } from '../../../app-config/envs';
+import { Public } from '../../../shared/decorators';
 import { JwtTokenProvider, RefreshTokenProvider } from '../../providers';
 import { GoogleLoginService } from '../../services';
 import { IGoogleLoginReqDto } from './i-google-login.req.dto';
@@ -26,6 +27,7 @@ export class GoogleLoginController {
     private readonly refreshTokenProvider: IRefreshTokenProvider,
   ) {}
 
+  @Public()
   @TypedRoute.Post('/google')
   public async execute(
     @TypedBody() body: IGoogleLoginReqDto,
