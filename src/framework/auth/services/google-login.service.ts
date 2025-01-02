@@ -9,13 +9,13 @@ import {
   CreateAccountRepositoryInput,
   ICreateAccountRepository,
   IGetAccountRepository,
-} from '../../../core/auth/i-repositories';
+} from '../../../core/auth';
 import { ICreateUserRepository } from '../../../core/user';
 import {
   CreateGoogleAccountRepository,
+  CreateUserRepository,
   GetGoogleAccountRepository,
 } from '../../../infra/repositories';
-import { CreateUserRepository } from '../../../infra/repositories/user';
 import { UnitOfWorkProvider } from '../../shared/providers';
 
 @Injectable()
@@ -38,19 +38,21 @@ export class GoogleLoginService implements IGoogleLoginService {
       return { ...account.user, isNewUser: false };
     }
 
-    const newAccount = await this.unitOfWorkProvider.commit(async () => {
+    const newUser = await this.unitOfWorkProvider.commit(async () => {
       const newUser = await this.createUserRepository.execute(dto.email);
-      return await this.createGoogleAccountRepository.execute(
+      await this.createGoogleAccountRepository.execute(
         new CreateAccountRepositoryInput(
           dto.googleId,
           newUser.userId,
           dto.email,
         ),
       );
+
+      return newUser;
     });
 
     return {
-      ...newAccount.user,
+      ...newUser,
       isNewUser: true,
     };
   }

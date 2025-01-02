@@ -2,9 +2,13 @@ import { TypedBody, TypedRoute } from '@nestia/core';
 import { Controller, Inject } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 
-import { IGoogleLoginService, IJwtTokenProvider } from '../../../../core/auth';
+import {
+  IGoogleLoginService,
+  IJwtTokenProvider,
+  IRefreshTokenProvider,
+} from '../../../../core/auth';
 import { tokenEnv } from '../../../app-config/envs';
-import { JwtTokenProvider } from '../../providers';
+import { JwtTokenProvider, RefreshTokenProvider } from '../../providers';
 import { GoogleLoginService } from '../../services';
 import { IGoogleLoginReqDto } from './i-google-login.req.dto';
 import { IGoogleLoginResDto } from './i-google-login.res.dto';
@@ -18,6 +22,8 @@ export class GoogleLoginController {
     private readonly googleLoginService: IGoogleLoginService,
     @Inject(JwtTokenProvider)
     private readonly jwtTokenProvider: IJwtTokenProvider,
+    @Inject(RefreshTokenProvider)
+    private readonly refreshTokenProvider: IRefreshTokenProvider,
   ) {}
 
   @TypedRoute.Post('/google')
@@ -33,9 +39,13 @@ export class GoogleLoginController {
       userId: loginResult.userId,
     });
 
+    const refreshToken = await this.refreshTokenProvider.generate(
+      loginResult.userId,
+    );
+
     return {
       accessToken,
-      refreshToken: '',
+      refreshToken,
       expiresAt,
       isNewUser: loginResult.isNewUser,
     };

@@ -1,32 +1,47 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { AccountEntity, UserEntity } from '../../infra/entities';
+import {
+  AccountEntity,
+  RefreshTokenEntity,
+  UserEntity,
+} from '../../infra/entities';
 import {
   CreateGoogleAccountRepository,
+  CreateRefreshTokenRepository,
+  CreateUserRepository,
   GetGoogleAccountRepository,
+  GetRefreshTokenRepository,
 } from '../../infra/repositories';
-import { CreateUserRepository } from '../../infra/repositories/user';
 import { DbContextProvider, UnitOfWorkProvider } from '../shared/providers';
 import { GoogleLoginController } from './controllers';
+import { JwtTokenProvider, RefreshTokenProvider } from './providers';
 import { GoogleLoginService } from './services';
-import { JwtTokenProvider } from './providers/jwt-token.provider';
 
 const controllers = [GoogleLoginController];
 
 const services = [GoogleLoginService];
 
-const providers = [UnitOfWorkProvider, DbContextProvider];
+const providers = [
+  UnitOfWorkProvider,
+  DbContextProvider,
+  JwtTokenProvider,
+  RefreshTokenProvider,
+];
 
 const repositories = [
   GetGoogleAccountRepository,
   CreateGoogleAccountRepository,
   CreateUserRepository,
+  CreateRefreshTokenRepository,
+  GetRefreshTokenRepository,
 ];
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AccountEntity, UserEntity])],
+  imports: [
+    TypeOrmModule.forFeature([AccountEntity, UserEntity, RefreshTokenEntity]),
+  ],
   controllers,
-  providers: [...services, ...repositories, ...providers, JwtTokenProvider],
+  providers: [...services, ...repositories, ...providers],
 })
 export class AuthModule {}
