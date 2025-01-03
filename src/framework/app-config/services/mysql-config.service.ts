@@ -7,6 +7,7 @@ import {
   RefreshTokenEntity,
   UserEntity,
 } from '../../../infra/entities';
+import { DdayEntity } from '../../../infra/entities/dday.entity';
 import { mysqlEnv } from '../envs';
 import serverEnv from '../envs/server.env';
 
@@ -30,7 +31,7 @@ export class MysqlConfigService implements TypeOrmOptionsFactory {
       synchronize: this.serverConfig.env !== 'production',
       logging: process.env.NODE_ENV !== 'test',
       poolSize: this.mysqlConfig.poolSize,
-      entities: [AccountEntity, UserEntity, RefreshTokenEntity],
+      entities: [AccountEntity, UserEntity, RefreshTokenEntity, DdayEntity],
       supportBigNumbers: true,
       bigNumberStrings: true,
     };
