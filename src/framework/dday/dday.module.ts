@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DdayEntity } from '../../infra/entities/dday.entity';
 import {
   CreateDdayRepository,
+  DeleteDdayRepository,
   GetDdayByDdayIdRepository,
   GetDdaysByUserIdRepository,
   UpdateDdayRepository,
@@ -13,8 +14,10 @@ import {
   GetMyDdaysController,
   UpdateDdayController,
 } from './controllers';
+import { DeleteDdayController } from './controllers/delete-dday';
 import {
   CreateDdayService,
+  DeleteDdayByDdayIdService,
   GetDdaysByUserIdService,
   UpdateDdayService,
 } from './services';
@@ -23,12 +26,14 @@ const controllers = [
   CreateDdayController,
   GetMyDdaysController,
   UpdateDdayController,
+  DeleteDdayController,
 ];
 
 const services = [
   CreateDdayService,
   GetDdaysByUserIdService,
   UpdateDdayService,
+  DeleteDdayByDdayIdService,
 ];
 
 const repositories = [
@@ -36,6 +41,7 @@ const repositories = [
   GetDdaysByUserIdRepository,
   GetDdayByDdayIdRepository,
   UpdateDdayRepository,
+  DeleteDdayRepository,
 ];
 
 @Module({
