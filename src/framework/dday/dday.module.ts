@@ -2,15 +2,19 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { DdayEntity } from '../../infra/entities/dday.entity';
-import { CreateDdayRepository } from '../../infra/repositories';
-import { CreateDdayController } from './controllers';
+import {
+  CreateDdayRepository,
+  GetDdaysByUserIdRepository,
+} from '../../infra/repositories';
+import { CreateDdayController, GetMyDdaysController } from './controllers';
 import { CreateDdayService } from './services';
+import { GetDdaysByUserIdService } from './services';
 
-const controllers = [CreateDdayController];
+const controllers = [CreateDdayController, GetMyDdaysController];
 
-const services = [CreateDdayService];
+const services = [CreateDdayService, GetDdaysByUserIdService];
 
-const repositories = [CreateDdayRepository];
+const repositories = [CreateDdayRepository, GetDdaysByUserIdRepository];
 
 @Module({
   imports: [TypeOrmModule.forFeature([DdayEntity])],
