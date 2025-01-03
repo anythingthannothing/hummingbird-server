@@ -9,19 +9,20 @@ WORKDIR /app
 
 COPY ../package.json ../pnpm-lock.yaml ./
 
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --prod --frozen-lockfile
 
 FROM base AS build
 
 WORKDIR /app
 
-COPY --from=deps ./app/node_modules ./node_modules
 COPY ../package.json ./
 COPY ../src ./src
 COPY ../pnpm-lock.yaml ./
 COPY ../nest-cli.json ./
 COPY ../tsconfig.json ./
 COPY ../tsconfig.build.json ./
+
+RUN pnpm install --frozen-lockfile
 
 RUN pnpm run build
 
