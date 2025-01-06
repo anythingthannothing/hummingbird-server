@@ -3,11 +3,14 @@ import { UserDomain } from 'src/core/domains';
 
 import {
   CreateAccountRepositoryInput,
-  GoogleLoginServiceInput,
   ICreateAccountRepository,
   IGetAccountRepository,
+} from '../../../core/account';
+import {
+  GoogleLoginServiceInput,
   IGoogleLoginService,
 } from '../../../core/auth';
+import { AuthExceptionEnum } from '../../../core/auth';
 import { ICreateUserRepository } from '../../../core/user';
 import {
   CreateGoogleAccountRepository,
@@ -16,7 +19,6 @@ import {
 } from '../../../infra/repositories';
 import { throwBadRequestException } from '../../shared/exceptions/400';
 import { UnitOfWorkProvider } from '../../shared/providers';
-import { AuthExceptionEnum } from '../exceptions/auth-exception.enum';
 
 @Injectable()
 export class GoogleLoginService implements IGoogleLoginService {

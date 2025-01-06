@@ -34,7 +34,7 @@ export class UserEntity implements UserDomain {
   thumbnailPath: string | null;
 
   @Column({ name: 'birth_date', type: 'date', nullable: true, default: null })
-  birthDate: Date | null;
+  birthDate: string | null;
 
   @Column({
     name: 'country_code',

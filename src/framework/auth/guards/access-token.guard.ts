@@ -8,8 +8,7 @@ import {
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 
-import { IJwtTokenProvider } from '../../../core/auth';
-import { authConst } from '../../../core/lib';
+import { authConst, IJwtTokenProvider } from '../../../core/auth';
 import { JwtTokenProvider } from '../providers';
 
 @Injectable()

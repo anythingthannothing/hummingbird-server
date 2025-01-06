@@ -13,11 +13,12 @@ import { UserModule } from './user/user.module';
     AppConfigModule,
     AuthModule,
     UserModule,
+    DdayModule,
     RouterModule.register([
       { path: 'auth', children: [AuthModule] },
       { path: 'dday', children: [DdayModule] },
+      { path: 'users', children: [UserModule] },
     ]),
-    DdayModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AccessTokenGuard },
