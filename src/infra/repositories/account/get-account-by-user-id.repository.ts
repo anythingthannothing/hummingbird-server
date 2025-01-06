@@ -3,22 +3,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { AccountDomain } from 'src/core/domains';
 import { Repository } from 'typeorm';
 
-import { IGetAccountRepository } from '../../../core/auth/i-repositories';
+import { IGetAccountByUserIdRepository } from '../../../core/account';
 import { AccountEntity } from '../../entities';
 
 @Injectable()
-export class GetGoogleAccountRepository implements IGetAccountRepository {
+export class GetAccountByUserIdRepository
+  implements IGetAccountByUserIdRepository
+{
   constructor(
     @InjectRepository(AccountEntity)
     private readonly accountRepository: Repository<AccountEntity>,
   ) {}
-
-  public async execute(googleId: string): Promise<AccountDomain | null> {
-    return this.accountRepository.findOne({
-      where: { authProviderId: googleId },
-      relations: {
-        user: true,
-      },
-    });
+  public async execute(userId: number): Promise<AccountDomain | null> {
+    return this.accountRepository.findOne({ where: { userId } });
   }
 }

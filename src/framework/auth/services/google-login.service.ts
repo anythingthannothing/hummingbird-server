@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserDomain } from 'src/core/domains';
 
 import {
@@ -33,6 +33,11 @@ export class GoogleLoginService implements IGoogleLoginService {
     dto: GoogleLoginServiceInput,
   ): Promise<UserDomain & { isNewUser: boolean }> {
     const account = await this.getGoogleAccountRepository.execute(dto.googleId);
+
+    // TODO: 회원탈퇴에 따른 처리방안 논의 후 구현
+    if (account && account.deletedAt) {
+      throw new UnauthorizedException();
+    }
 
     if (account) {
       return { ...account.user, isNewUser: false };

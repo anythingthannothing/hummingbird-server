@@ -1,4 +1,11 @@
 import { Module } from '@nestjs/common';
 
-@Module({})
+const controllers = [];
+
+const services = [];
+
+@Module({
+  controllers: controllers,
+  providers: [...services],
+})
 export class UserModule {}

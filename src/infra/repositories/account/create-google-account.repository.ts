@@ -4,7 +4,7 @@ import { AccountDomain, AuthProviderEnum } from 'src/core/domains';
 import {
   CreateAccountRepositoryInput,
   ICreateAccountRepository,
-} from '../../../core/auth/i-repositories';
+} from '../../../core/account/i-repositories';
 import { DbContextProvider } from '../../../framework/shared/providers';
 import { AccountEntity } from '../../entities';
 

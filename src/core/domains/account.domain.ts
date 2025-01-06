@@ -13,4 +13,5 @@ export interface AccountDomain {
   user: UserDomain;
   email: string;
   createdAt: Date;
+  deletedAt: Date | null;
 }
