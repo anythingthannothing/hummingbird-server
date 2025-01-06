@@ -1,14 +1,12 @@
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { UserDomain } from 'src/core/domains';
 
 import {
-  GoogleLoginServiceInput,
-  IGoogleLoginService,
-} from '../../../core/auth';
-import {
   CreateAccountRepositoryInput,
+  GoogleLoginServiceInput,
   ICreateAccountRepository,
   IGetAccountRepository,
+  IGoogleLoginService,
 } from '../../../core/auth';
 import { ICreateUserRepository } from '../../../core/user';
 import {
@@ -16,7 +14,9 @@ import {
   CreateUserRepository,
   GetGoogleAccountRepository,
 } from '../../../infra/repositories';
+import { throwBadRequestException } from '../../shared/exceptions/400';
 import { UnitOfWorkProvider } from '../../shared/providers';
+import { AuthExceptionEnum } from '../exceptions/auth-exception.enum';
 
 @Injectable()
 export class GoogleLoginService implements IGoogleLoginService {
@@ -36,7 +36,10 @@ export class GoogleLoginService implements IGoogleLoginService {
 
     // TODO: 회원탈퇴에 따른 처리방안 논의 후 구현
     if (account && account.deletedAt) {
-      throw new UnauthorizedException();
+      return throwBadRequestException(
+        'Canceled account. Please try again later.',
+        AuthExceptionEnum.CANCELED_ACCOUNT,
+      );
     }
 
     if (account) {
