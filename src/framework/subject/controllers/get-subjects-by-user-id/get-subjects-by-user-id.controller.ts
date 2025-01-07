@@ -17,7 +17,7 @@ export class GetSubjectsByUserIdController {
     private readonly getSubjectsByUserIdService: IGetSubjectsByUserIdService,
   ) {}
 
-  @TypedRoute.Get(':userId')
+  @TypedRoute.Get('users/:userId')
   public async execute(
     @CurrentUser() user: JwtPayload,
     @TypedParam('userId') userId: number,

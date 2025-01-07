@@ -1,4 +1,4 @@
-import { IBaseCreateEntityRepository } from '../../i-base-repositories';
+import { IBaseCreateEntityRepository } from '../../lib/i-base-repositories';
 import { AccountDomain } from '../account.domain';
 
 export class CreateAccountRepositoryInput {
