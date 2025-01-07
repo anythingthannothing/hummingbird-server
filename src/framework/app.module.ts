@@ -6,8 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { AccessTokenGuard } from './auth/guards';
 import { JwtTokenProvider } from './auth/providers';
 import { DdayModule } from './dday/dday.module';
-import { UserModule } from './user/user.module';
 import { SubjectModule } from './subject/subject.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -15,12 +15,13 @@ import { SubjectModule } from './subject/subject.module';
     AuthModule,
     UserModule,
     DdayModule,
+    SubjectModule,
     RouterModule.register([
       { path: 'auth', children: [AuthModule] },
       { path: 'dday', children: [DdayModule] },
       { path: 'users', children: [UserModule] },
+      { path: 'subjects', children: [SubjectModule] },
     ]),
-    SubjectModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AccessTokenGuard },

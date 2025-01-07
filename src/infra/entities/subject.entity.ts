@@ -1,4 +1,11 @@
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { SubjectDomain } from '../../core/subject';
 import { UserEntity } from './user.entity';
@@ -26,4 +33,10 @@ export class SubjectEntity implements SubjectDomain {
 
   @Column({ type: 'tinyint', unsigned: true, nullable: false })
   order: number;
+
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
+  updatedAt: Date;
 }

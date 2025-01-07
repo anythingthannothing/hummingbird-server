@@ -1,0 +1,3 @@
+export enum SubjectExceptionCodeEnum {
+  NO_PERMISSION_TO_VIEW_SUBJECTS = 'NO_PERMISSION_TO_VIEW_SUBJECTS',
+}

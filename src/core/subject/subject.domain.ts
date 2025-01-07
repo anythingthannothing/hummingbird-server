@@ -4,4 +4,6 @@ export interface SubjectDomain {
   title: string;
   color: string;
   order: number;
+  createdAt: Date;
+  updatedAt: Date;
 }

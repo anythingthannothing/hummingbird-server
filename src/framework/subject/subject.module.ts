@@ -2,15 +2,20 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { SubjectEntity } from '../../infra/entities';
-import { CreateSubjectRepository } from '../../infra/repositories';
+import {
+  CreateSubjectRepository,
+  GetSubjectsByUserIdRepository,
+} from '../../infra/repositories';
 import { CreateSubjectController } from './controllers';
+import { GetSubjectsByUserIdController } from './controllers/get-subjects-by-user-id';
 import { CreateSubjectService } from './services';
+import { GetSubjectsByUserIdService } from './services';
 
-const controllers = [CreateSubjectController];
+const controllers = [CreateSubjectController, GetSubjectsByUserIdController];
 
-const services = [CreateSubjectService];
+const services = [CreateSubjectService, GetSubjectsByUserIdService];
 
-const repositories = [CreateSubjectRepository];
+const repositories = [CreateSubjectRepository, GetSubjectsByUserIdRepository];
 
 @Module({
   imports: [TypeOrmModule.forFeature([SubjectEntity])],
