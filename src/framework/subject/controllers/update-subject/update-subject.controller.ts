@@ -1,22 +1,27 @@
-import { TypedBody, TypedRoute } from '@nestia/core';
-import { Controller, HttpCode, HttpStatus } from '@nestjs/common';
+import { TypedBody, TypedParam, TypedRoute } from '@nestia/core';
+import { Controller, HttpCode, HttpStatus, Inject } from '@nestjs/common';
 
 import { JwtPayload } from '../../../../core/auth';
 import {
   IUpdateSubjectService,
   UpdateSubjectServiceInput,
-} from '../../../../core/subject/i-services/i-update-subject.service';
+} from '../../../../core/subject';
 import { CurrentUser } from '../../../shared/decorators';
+import { UpdateSubjectService } from '../../services';
 import { IUpdateSubjectReqDto } from './i-update-subject.req.dto';
 
 @Controller()
 export class UpdateSubjectController {
-  constructor(private readonly updateSubjectService: IUpdateSubjectService) {}
+  constructor(
+    @Inject(UpdateSubjectService)
+    private readonly updateSubjectService: IUpdateSubjectService,
+  ) {}
 
   @TypedRoute.Patch(':subjectId')
   @HttpCode(HttpStatus.NO_CONTENT)
   public async execute(
     @CurrentUser() user: JwtPayload,
+    @TypedParam('subjectId') subjectId: string,
     @TypedBody() body: IUpdateSubjectReqDto,
   ): Promise<void> {
     await this.updateSubjectService.execute(

@@ -4,24 +4,50 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SubjectEntity } from '../../infra/entities';
 import {
   CreateSubjectRepository,
+  GetSubjectByIdRepository,
   GetSubjectsByUserIdRepository,
+  SaveSubjectRepository,
 } from '../../infra/repositories';
-import { CreateSubjectController } from './controllers';
-import { GetSubjectsByUserIdController } from './controllers/get-subjects-by-user-id';
-import { UpdateSubjectController } from './controllers/update-subject/update-subject.controller';
-import { CreateSubjectService } from './services';
-import { GetSubjectsByUserIdService } from './services';
-import { UpdateSubjectService } from './services/update-subject.service';
+import { DeleteSubjectRepository } from '../../infra/repositories/subject/delete-subject.repository';
+import {
+  CreateSubjectController,
+  DeleteSubjectController,
+  GetSubjectsByUserIdController,
+  UpdateSubjectController,
+} from './controllers';
+import {
+  CreateSubjectService,
+  DeleteSubjectByIdService,
+  GetSubjectsByUserIdService,
+  UpdateSubjectService,
+} from './services';
+import {} from './services/update-subject.service';
 
-const controllers = [CreateSubjectController, GetSubjectsByUserIdController];
+const controllers = [
+  CreateSubjectController,
+  GetSubjectsByUserIdController,
+  UpdateSubjectController,
+  DeleteSubjectController,
+];
 
-const services = [CreateSubjectService, GetSubjectsByUserIdService];
+const services = [
+  CreateSubjectService,
+  GetSubjectsByUserIdService,
+  UpdateSubjectService,
+  DeleteSubjectByIdService,
+];
 
-const repositories = [CreateSubjectRepository, GetSubjectsByUserIdRepository];
+const repositories = [
+  CreateSubjectRepository,
+  GetSubjectsByUserIdRepository,
+  DeleteSubjectRepository,
+  SaveSubjectRepository,
+  GetSubjectByIdRepository,
+];
 
 @Module({
   imports: [TypeOrmModule.forFeature([SubjectEntity])],
   controllers: controllers,
-  providers: [...services, ...repositories, UpdateSubjectService],
+  providers: [...services, ...repositories],
 })
 export class SubjectModule {}
