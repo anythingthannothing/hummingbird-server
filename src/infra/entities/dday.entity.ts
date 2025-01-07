@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { DdayDomain } from '../../core/domains/dday.domain';
+import { DdayDomain } from '../../core/dday';
 import { UserEntity } from './user.entity';
 
 @Entity('dday')

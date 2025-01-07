@@ -3,8 +3,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { VerifyRefreshTokenInput } from '../../../core/auth';
-import { RefreshTokenDomain } from '../../../core/domains';
-import { ICreateRefreshTokenRepository } from '../../../core/refresh-token';
+import {
+  ICreateRefreshTokenRepository,
+  RefreshTokenDomain,
+} from '../../../core/refresh-token';
 import { RefreshTokenEntity } from '../../entities';
 
 @Injectable()

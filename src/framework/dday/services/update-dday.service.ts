@@ -10,7 +10,7 @@ import {
   IUpdateDdayRepository,
 } from '../../../core/dday';
 import { IUpdateDdayService, UpdateDdayServiceInput } from '../../../core/dday';
-import { DdayDomain } from '../../../core/domains/dday.domain';
+import { DdayDomain } from '../../../core/dday/dday.domain';
 import {
   GetDdayByDdayIdRepository,
   UpdateDdayRepository,

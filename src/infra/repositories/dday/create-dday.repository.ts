@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DdayDomain } from 'src/core/domains/dday.domain';
+import { DdayDomain } from 'src/core/dday/dday.domain';
 import { Repository } from 'typeorm';
 
 import {

@@ -1,4 +1,4 @@
-import { UserDomain } from './user.domain';
+import { UserDomain } from '../user';
 
 export enum AuthProviderEnum {
   google = 'google',

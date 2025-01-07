@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { DdayDomain } from 'src/core/domains/dday.domain';
+import { DdayDomain } from 'src/core/dday/dday.domain';
 
 import { IGetDdaysByUserIdService } from '../../../core/dday';
 import { IGetDdaysByUserIdRepository } from '../../../core/dday';

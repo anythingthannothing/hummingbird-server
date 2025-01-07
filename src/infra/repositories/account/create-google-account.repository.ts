@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { AccountDomain, AuthProviderEnum } from 'src/core/domains';
 
 import {
+  AccountDomain,
+  AuthProviderEnum,
   CreateAccountRepositoryInput,
   ICreateAccountRepository,
-} from '../../../core/account/i-repositories';
+} from '../../../core/account';
 import { DbContextProvider } from '../../../framework/shared/providers';
 import { AccountEntity } from '../../entities';
 

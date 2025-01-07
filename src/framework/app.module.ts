@@ -7,6 +7,7 @@ import { AccessTokenGuard } from './auth/guards';
 import { JwtTokenProvider } from './auth/providers';
 import { DdayModule } from './dday/dday.module';
 import { UserModule } from './user/user.module';
+import { SubjectModule } from './subject/subject.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UserModule } from './user/user.module';
       { path: 'dday', children: [DdayModule] },
       { path: 'users', children: [UserModule] },
     ]),
+    SubjectModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AccessTokenGuard },

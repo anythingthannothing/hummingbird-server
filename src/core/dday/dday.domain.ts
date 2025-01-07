@@ -1,4 +1,4 @@
-import { UserDomain } from './user.domain';
+import { UserDomain } from '../user/user.domain';
 
 export interface DdayDomain {
   ddayId: string;

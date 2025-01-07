@@ -5,7 +5,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { UserDomain } from '../../core/domains';
+import { UserDomain } from '../../core/user';
 
 @Entity('user')
 export class UserEntity implements UserDomain {

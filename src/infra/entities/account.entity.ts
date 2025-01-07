@@ -9,7 +9,7 @@ import {
   Unique,
 } from 'typeorm';
 
-import { AccountDomain, AuthProviderEnum } from '../../core/domains';
+import { AccountDomain, AuthProviderEnum } from '../../core/account';
 import { UserEntity } from './user.entity';
 
 @Entity('account')

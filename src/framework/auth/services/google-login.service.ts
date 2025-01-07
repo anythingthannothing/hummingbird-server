@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UserDomain } from 'src/core/domains';
 
 import {
   CreateAccountRepositoryInput,
@@ -11,7 +10,7 @@ import {
   IGoogleLoginService,
 } from '../../../core/auth';
 import { AuthExceptionEnum } from '../../../core/auth';
-import { ICreateUserRepository } from '../../../core/user';
+import { ICreateUserRepository, UserDomain } from '../../../core/user';
 import {
   CreateGoogleAccountRepository,
   CreateUserRepository,

@@ -5,9 +5,10 @@ import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import {
   AccountEntity,
   RefreshTokenEntity,
+  SubjectEntity,
   UserEntity,
 } from '../../../infra/entities';
-import { DdayEntity } from '../../../infra/entities/dday.entity';
+import { DdayEntity } from '../../../infra/entities';
 import { mysqlEnv } from '../envs';
 import serverEnv from '../envs/server.env';
 
@@ -31,7 +32,13 @@ export class MysqlConfigService implements TypeOrmOptionsFactory {
       synchronize: this.serverConfig.env !== 'production',
       logging: process.env.NODE_ENV !== 'test',
       poolSize: this.mysqlConfig.poolSize,
-      entities: [AccountEntity, UserEntity, RefreshTokenEntity, DdayEntity],
+      entities: [
+        AccountEntity,
+        UserEntity,
+        RefreshTokenEntity,
+        DdayEntity,
+        SubjectEntity,
+      ],
       supportBigNumbers: true,
       bigNumberStrings: true,
     };

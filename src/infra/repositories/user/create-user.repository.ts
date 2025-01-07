@@ -1,7 +1,6 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { UserDomain } from 'src/core/domains';
+import { Injectable } from '@nestjs/common';
 
-import { ICreateUserRepository } from '../../../core/user';
+import { ICreateUserRepository, UserDomain } from '../../../core/user';
 import { DbContextProvider } from '../../../framework/shared/providers';
 import { UserEntity } from '../../entities';
 

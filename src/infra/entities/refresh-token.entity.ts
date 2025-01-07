@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-import { RefreshTokenDomain } from '../../core/domains';
+import { RefreshTokenDomain } from '../../core/refresh-token';
 
 @Entity('refresh_token')
 export class RefreshTokenEntity implements RefreshTokenDomain {
