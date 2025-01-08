@@ -1,4 +1,4 @@
-import { DdayDomain } from '../../domains/dday.domain';
-import { IBaseDeleteEntityRepository } from '../../i-base-repositories';
+import { IBaseDeleteEntityRepository } from '../../lib/i-base-repositories';
+import { DdayDomain } from '../dday.domain';
 
 export type IDeleteDdayRepository = IBaseDeleteEntityRepository<DdayDomain>;

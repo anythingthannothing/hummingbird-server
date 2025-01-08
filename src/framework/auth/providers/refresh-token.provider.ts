@@ -13,7 +13,7 @@ import {
 import {
   CreateRefreshTokenRepository,
   GetRefreshTokenRepository,
-} from '../../../infra/repositories';
+} from '../../../infra/mysql/repositories';
 import { tokenEnv } from '../../app-config/envs';
 
 @Injectable()

@@ -12,4 +12,10 @@ export const envValidationSchema = Joi.object({
   MYSQL_PASSWORD: Joi.string().required(),
   MYSQL_DATABASE: Joi.string().required(),
   MYSQL_POOL_SIZE: Joi.number().required(),
+  MONGO_HOST: Joi.string().required(),
+  MONGO_USERNAME: Joi.string().required(),
+  MONGO_PASSWORD: Joi.string().required(),
+  MONGO_PORT: Joi.number().required(),
+  MONGO_DATABASE: Joi.string().required(),
+  MONGO_CONNECTION_STRING: Joi.string().required(),
 });

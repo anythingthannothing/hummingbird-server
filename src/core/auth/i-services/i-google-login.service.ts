@@ -1,4 +1,4 @@
-import { UserDomain } from '../../domains';
+import { UserDomain } from '../../user';
 
 export class GoogleLoginServiceInput {
   constructor(

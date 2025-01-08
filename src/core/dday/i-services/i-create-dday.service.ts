@@ -1,4 +1,4 @@
-import { DdayDomain } from '../../domains/dday.domain';
+import { DdayDomain } from '../dday.domain';
 
 export class CreateDdayServiceInput {
   constructor(

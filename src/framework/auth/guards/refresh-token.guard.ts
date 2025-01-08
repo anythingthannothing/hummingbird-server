@@ -7,8 +7,11 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 
-import { IJwtTokenProvider, IRefreshTokenProvider } from '../../../core/auth';
-import { authConst } from '../../../core/lib';
+import {
+  authConst,
+  IJwtTokenProvider,
+  IRefreshTokenProvider,
+} from '../../../core/auth';
 import { JwtTokenProvider, RefreshTokenProvider } from '../providers';
 
 @Injectable()

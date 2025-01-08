@@ -14,7 +14,7 @@ import { IDeleteDdayRepository } from '../../../core/dday';
 import {
   DeleteDdayRepository,
   GetDdayByDdayIdRepository,
-} from '../../../infra/repositories';
+} from '../../../infra/mysql/repositories';
 
 @Injectable()
 export class DeleteDdayByDdayIdService implements IDeleteDdayByDdayIdService {

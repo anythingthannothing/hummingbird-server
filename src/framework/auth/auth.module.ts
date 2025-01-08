@@ -5,23 +5,29 @@ import {
   AccountEntity,
   RefreshTokenEntity,
   UserEntity,
-} from '../../infra/entities';
+} from '../../infra/mysql/entities';
 import {
   CreateGoogleAccountRepository,
   CreateRefreshTokenRepository,
   CreateUserRepository,
+  GetAccountByUserIdRepository,
   GetGoogleAccountRepository,
   GetRefreshTokenRepository,
-} from '../../infra/repositories';
+  SoftDeleteAccountByAccountIdRepository,
+} from '../../infra/mysql/repositories';
 import { DbContextProvider, UnitOfWorkProvider } from '../shared/providers';
 import { GoogleLoginController, RefreshTokenController } from './controllers';
-import { AccessTokenGuard } from './guards';
+import { CancelAccountController } from './controllers/cancel-account';
 import { JwtTokenProvider, RefreshTokenProvider } from './providers';
-import { GoogleLoginService } from './services';
+import { CancelAccountByUserIdService, GoogleLoginService } from './services';
 
-const controllers = [GoogleLoginController, RefreshTokenController];
+const controllers = [
+  GoogleLoginController,
+  RefreshTokenController,
+  CancelAccountController,
+];
 
-const services = [GoogleLoginService];
+const services = [GoogleLoginService, CancelAccountByUserIdService];
 
 const providers = [
   UnitOfWorkProvider,
@@ -36,6 +42,8 @@ const repositories = [
   CreateUserRepository,
   CreateRefreshTokenRepository,
   GetRefreshTokenRepository,
+  GetAccountByUserIdRepository,
+  SoftDeleteAccountByAccountIdRepository,
 ];
 
 @Module({
