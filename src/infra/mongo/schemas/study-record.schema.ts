@@ -46,8 +46,9 @@ export class StudyRecordModel extends Document implements StudyRecordDomain {
       },
     ],
     required: true,
+    _id: false,
   })
-  subjects: {
+  studies: {
     title: string;
     duration: number;
     totalBreak: number;

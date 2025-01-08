@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { AccessTokenGuard } from './auth/guards';
 import { JwtTokenProvider } from './auth/providers';
 import { DdayModule } from './dday/dday.module';
+import { StudyRecordModule } from './study-record/study-record.module';
 import { SubjectModule } from './subject/subject.module';
 import { UserModule } from './user/user.module';
 
@@ -16,11 +17,13 @@ import { UserModule } from './user/user.module';
     UserModule,
     DdayModule,
     SubjectModule,
+    StudyRecordModule,
     RouterModule.register([
       { path: 'auth', children: [AuthModule] },
       { path: 'dday', children: [DdayModule] },
       { path: 'users', children: [UserModule] },
       { path: 'subjects', children: [SubjectModule] },
+      { path: 'study-records', children: [StudyRecordModule] },
     ]),
   ],
   providers: [
