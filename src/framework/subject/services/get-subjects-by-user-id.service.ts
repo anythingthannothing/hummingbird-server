@@ -6,7 +6,7 @@ import {
   GetSubjectsByUserIdServiceInput,
   IGetSubjectsByUserIdService,
 } from '../../../core/subject';
-import { GetSubjectsByUserIdRepository } from '../../../infra/repositories';
+import { GetSubjectsByUserIdRepository } from '../../../infra/mysql/repositories';
 import { throwForbiddenException } from '../../shared/exceptions';
 
 @Injectable()

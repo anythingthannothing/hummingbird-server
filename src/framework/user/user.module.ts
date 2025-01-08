@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { UserEntity } from '../../infra/entities';
+import { UserEntity } from '../../infra/mysql/entities';
 import {
   GetUserByUserIdRepository,
   SaveUserRepository,
-} from '../../infra/repositories';
+} from '../../infra/mysql/repositories';
 import { UpdateUserController } from './controllers/update-profile';
 import { UpdateUserService } from './services';
 

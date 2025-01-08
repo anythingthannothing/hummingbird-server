@@ -5,7 +5,7 @@ import {
   AccountEntity,
   RefreshTokenEntity,
   UserEntity,
-} from '../../infra/entities';
+} from '../../infra/mysql/entities';
 import {
   CreateGoogleAccountRepository,
   CreateRefreshTokenRepository,
@@ -14,7 +14,7 @@ import {
   GetGoogleAccountRepository,
   GetRefreshTokenRepository,
   SoftDeleteAccountByAccountIdRepository,
-} from '../../infra/repositories';
+} from '../../infra/mysql/repositories';
 import { DbContextProvider, UnitOfWorkProvider } from '../shared/providers';
 import { GoogleLoginController, RefreshTokenController } from './controllers';
 import { CancelAccountController } from './controllers/cancel-account';

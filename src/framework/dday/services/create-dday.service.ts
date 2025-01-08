@@ -6,7 +6,7 @@ import {
   ICreateDdayRepository,
   ICreateDdayService,
 } from '../../../core/dday';
-import { CreateDdayRepository } from '../../../infra/repositories';
+import { CreateDdayRepository } from '../../../infra/mysql/repositories';
 
 @Injectable()
 export class CreateDdayService implements ICreateDdayService {

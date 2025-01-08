@@ -7,8 +7,8 @@ import {
   RefreshTokenEntity,
   SubjectEntity,
   UserEntity,
-} from '../../../infra/entities';
-import { DdayEntity } from '../../../infra/entities';
+} from '../../../infra/mysql/entities';
+import { DdayEntity } from '../../../infra/mysql/entities';
 import { mysqlEnv } from '../envs';
 import serverEnv from '../envs/server.env';
 

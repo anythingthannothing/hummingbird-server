@@ -5,7 +5,7 @@ import {
   CreateSubjectServiceInput,
   ICreateSubjectService,
 } from '../../../core/subject';
-import { CreateSubjectRepository } from '../../../infra/repositories';
+import { CreateSubjectRepository } from '../../../infra/mysql/repositories';
 
 @Injectable()
 export class CreateSubjectService implements ICreateSubjectService {

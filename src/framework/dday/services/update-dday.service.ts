@@ -14,7 +14,7 @@ import { DdayDomain } from '../../../core/dday/dday.domain';
 import {
   GetDdayByDdayIdRepository,
   UpdateDdayRepository,
-} from '../../../infra/repositories';
+} from '../../../infra/mysql/repositories';
 
 @Injectable()
 export class UpdateDdayService implements IUpdateDdayService {

@@ -27,6 +27,7 @@ export class UpdateUserController {
       new UpdateUserServiceInput(
         user.userId,
         body.nickname,
+        body.thumbnailPath,
         body.birthDate,
         body.countryCode,
       ),

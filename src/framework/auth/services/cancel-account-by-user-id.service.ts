@@ -8,7 +8,7 @@ import { ICancelAccountByUserIdService } from '../../../core/auth';
 import {
   GetAccountByUserIdRepository,
   SoftDeleteAccountByAccountIdRepository,
-} from '../../../infra/repositories';
+} from '../../../infra/mysql/repositories';
 
 @Injectable()
 export class CancelAccountByUserIdService

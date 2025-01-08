@@ -10,7 +10,7 @@ import {
 import {
   GetSubjectByIdRepository,
   SaveSubjectRepository,
-} from '../../../infra/repositories';
+} from '../../../infra/mysql/repositories';
 import { throwNotFoundException } from '../../shared/exceptions';
 
 @Injectable()

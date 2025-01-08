@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { DdayEntity } from '../../infra/entities/dday.entity';
+import { DdayEntity } from '../../infra/mysql/entities/dday.entity';
 import {
   CreateDdayRepository,
   DeleteDdayRepository,
   GetDdayByDdayIdRepository,
   GetDdaysByUserIdRepository,
   UpdateDdayRepository,
-} from '../../infra/repositories';
+} from '../../infra/mysql/repositories';
 import {
   CreateDdayController,
   GetMyDdaysController,

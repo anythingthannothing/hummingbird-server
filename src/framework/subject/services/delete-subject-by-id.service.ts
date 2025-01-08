@@ -10,7 +10,7 @@ import {
 import {
   DeleteSubjectRepository,
   GetSubjectByIdRepository,
-} from '../../../infra/repositories';
+} from '../../../infra/mysql/repositories';
 import {
   throwForbiddenException,
   throwNotFoundException,

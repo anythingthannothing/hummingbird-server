@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { SubjectEntity } from '../../infra/entities';
+import { SubjectEntity } from '../../infra/mysql/entities';
 import {
   CreateSubjectRepository,
   GetSubjectByIdRepository,
   GetSubjectsByUserIdRepository,
   SaveSubjectRepository,
-} from '../../infra/repositories';
-import { DeleteSubjectRepository } from '../../infra/repositories/subject/delete-subject.repository';
+} from '../../infra/mysql/repositories';
+import { DeleteSubjectRepository } from '../../infra/mysql/repositories/subject/delete-subject.repository';
 import {
   CreateSubjectController,
   DeleteSubjectController,

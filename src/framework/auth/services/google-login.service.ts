@@ -15,7 +15,7 @@ import {
   CreateGoogleAccountRepository,
   CreateUserRepository,
   GetGoogleAccountRepository,
-} from '../../../infra/repositories';
+} from '../../../infra/mysql/repositories';
 import { throwBadRequestException } from '../../shared/exceptions/400';
 import { UnitOfWorkProvider } from '../../shared/providers';
 

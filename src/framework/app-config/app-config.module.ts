@@ -2,13 +2,18 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
+import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { envValidationSchema } from './env-validation.schema';
-import { mysqlEnv, tokenEnv } from './envs';
+import { mongoEnv, mysqlEnv, tokenEnv } from './envs';
 import serverEnv from './envs/server.env';
 import { CustomHttpExceptionFilter, UncaughtExceptionFilter } from './filters';
-import { JwtConfigService, MysqlConfigService } from './services';
+import {
+  JwtConfigService,
+  MongooseConfigService,
+  MysqlConfigService,
+} from './services';
 
 @Module({
   imports: [
@@ -16,7 +21,7 @@ import { JwtConfigService, MysqlConfigService } from './services';
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
       cache: true,
-      load: [mysqlEnv, serverEnv, tokenEnv],
+      load: [mysqlEnv, serverEnv, tokenEnv, mongoEnv],
       validationSchema: envValidationSchema,
       validationOptions: {
         abortEarly: false,
@@ -30,6 +35,10 @@ import { JwtConfigService, MysqlConfigService } from './services';
     TypeOrmModule.forRootAsync({
       useClass: MysqlConfigService,
       inject: [MysqlConfigService],
+    }),
+    MongooseModule.forRootAsync({
+      inject: [MongooseConfigService],
+      useClass: MongooseConfigService,
     }),
   ],
   providers: [

@@ -5,13 +5,13 @@ import {
   ISaveUserRepository,
   IUpdateUserService,
   UpdateUserServiceInput,
+  UserExceptionEnum,
 } from '../../../core/user';
-import { UserExceptionEnum } from '../../../core/user/user-exception.enum';
 import {
   GetUserByUserIdRepository,
   SaveUserRepository,
-} from '../../../infra/repositories';
-import { throwNotFoundException } from '../../shared/exceptions/400/throw-not-found-exception';
+} from '../../../infra/mysql/repositories';
+import { throwNotFoundException } from '../../shared/exceptions';
 
 @Injectable()
 export class UpdateUserService implements IUpdateUserService {
@@ -33,6 +33,7 @@ export class UpdateUserService implements IUpdateUserService {
     }
 
     user.nickname = dto.nickname ?? user.nickname;
+    user.thumbnailPath = dto.thumbnailPath ?? user.thumbnailPath;
     user.birthDate = dto.birthDate ?? user.birthDate;
     user.countryCode = dto.countryCode ?? user.countryCode;
 
