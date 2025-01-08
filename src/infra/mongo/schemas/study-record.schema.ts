@@ -29,8 +29,8 @@ export class StudyRecordModel extends Document implements StudyRecordDomain {
   })
   userId: number;
 
-  @Prop({ required: false, type: Number })
-  goalDuration: number;
+  @Prop({ required: false, type: Number, default: null })
+  goalDuration: number | null;
 
   @Prop({ required: true, type: Number })
   totalDuration: number;

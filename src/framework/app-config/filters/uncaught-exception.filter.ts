@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 
-import { CustomHttpException } from '../../shared/exceptions/custom-http-exception';
+import { CustomHttpException } from '../../shared/exceptions';
 
 @Catch()
 export class UncaughtExceptionFilter implements ExceptionFilter {
@@ -31,5 +31,6 @@ export class UncaughtExceptionFilter implements ExceptionFilter {
     httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
 
     // TODO: Handling Uncaught error
+    console.log(exception);
   }
 }

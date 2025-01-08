@@ -7,12 +7,15 @@ import {
   UpdateStudyRecordRepository,
 } from '../../infra/mongo/repositories';
 import { StudyRecordModel, StudyRecordSchema } from '../../infra/mongo/schemas';
-import { AddStudyRecordController } from './controllers';
-import { AddStudyRecordService } from './services';
+import {
+  AddStudyRecordController,
+  GetStudyRecordByDateController,
+} from './controllers';
+import { AddStudyRecordService, GetStudyRecordByDateService } from './services';
 
-const controllers = [AddStudyRecordController];
+const controllers = [AddStudyRecordController, GetStudyRecordByDateController];
 
-const services = [AddStudyRecordService];
+const services = [AddStudyRecordService, GetStudyRecordByDateService];
 
 const repositories = [
   GetStudyRecordByDateRepository,
@@ -26,7 +29,7 @@ const repositories = [
       { name: StudyRecordModel.name, schema: StudyRecordSchema },
     ]),
   ],
-  controllers: controllers,
+  controllers: [...controllers],
   providers: [...services, ...repositories],
 })
 export class StudyRecordModule {}

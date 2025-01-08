@@ -1,16 +1,13 @@
-export interface StudyRecordDomain {
-  studyRecordId: string;
-  date: string;
-  userId: number;
+export interface IGetStudyRecordByDateResDto {
   goalDuration: number | null;
   totalDuration: number;
   studies: Study[];
 }
 
-export interface Study {
+interface Study {
   title: string;
   duration: number;
+  totalBreak: number;
   startAt: number;
   endAt: number;
-  totalBreak: number;
 }
