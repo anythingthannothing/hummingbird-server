@@ -15,8 +15,12 @@ export class MongooseConfigService implements MongooseOptionsFactory {
   ) {}
 
   createMongooseOptions(): MongooseModuleOptions {
+    const uri =
+      process.env.NODE_ENV === 'development'
+        ? `mongodb://${this.mongoConfig.username}:${this.mongoConfig.password}@${this.mongoConfig.host}:${this.mongoConfig.port}`
+        : this.mongoConfig.connectionString;
     return {
-      uri: `mongodb://${this.mongoConfig.username}:${this.mongoConfig.password}@${this.mongoConfig.host}:${this.mongoConfig.port}`,
+      uri,
       dbName: this.mongoConfig.database,
       retryAttempts: 5,
       retryDelay: 5000,

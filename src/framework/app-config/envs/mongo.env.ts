@@ -6,4 +6,5 @@ export default registerAs('database', () => ({
   password: process.env.MONGO_PASSWORD,
   port: process.env.MONGO_PORT,
   database: process.env.MONGO_DATABASE,
+  connectionString: process.env.MONGO_CONNECTION_STRING,
 }));
