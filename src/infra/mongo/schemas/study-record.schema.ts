@@ -20,14 +20,14 @@ export class StudyRecordModel extends Document implements StudyRecordDomain {
   })
   studyRecordId: string;
 
-  @Prop({ required: true, type: String })
-  date: string;
-
   @Prop({
     required: true,
     type: Number,
   })
   userId: number;
+
+  @Prop({ required: true, type: String })
+  date: string;
 
   @Prop({ required: false, type: Number, default: null })
   goalDuration: number | null;
@@ -58,3 +58,5 @@ export class StudyRecordModel extends Document implements StudyRecordDomain {
 }
 
 export const StudyRecordSchema = SchemaFactory.createForClass(StudyRecordModel);
+
+StudyRecordSchema.index({ userId: 1, date: 1 }, { unique: true });

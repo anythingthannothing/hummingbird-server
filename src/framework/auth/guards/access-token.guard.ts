@@ -3,7 +3,6 @@ import {
   ExecutionContext,
   Inject,
   Injectable,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
@@ -33,7 +32,7 @@ export class AccessTokenGuard implements CanActivate {
     const token = request.headers.authorization;
 
     if (!token) {
-      throw new UnauthorizedException();
+      return false;
     }
 
     try {

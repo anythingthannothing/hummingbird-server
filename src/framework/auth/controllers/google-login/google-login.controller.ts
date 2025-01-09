@@ -50,6 +50,7 @@ export class GoogleLoginController {
       refreshToken,
       expiresAt,
       isNewUser: loginResult.isNewUser,
+      userId: loginResult.userId,
     };
   }
 }

@@ -6,7 +6,9 @@ import {
   IGetStudyRecordByDateService,
   StudyRecordDomain,
 } from '../../../core/study-record';
+import { StudyRecordExceptionCodeEnum } from '../../../core/study-record/study-record-exception-code.enum';
 import { GetStudyRecordByDateRepository } from '../../../infra/mongo/repositories';
+import { throwForbiddenException } from '../../shared/exceptions';
 
 @Injectable()
 export class GetStudyRecordByDateService
@@ -20,7 +22,10 @@ export class GetStudyRecordByDateService
     dto: GetStudyRecordByDateServiceInput,
   ): Promise<StudyRecordDomain | null> {
     if (dto.requesterId !== dto.userId) {
-      //   TODO: 친구 기능 추가 시 친구 목록 확인 로직 추가
+      return throwForbiddenException(
+        "You do not have permission to access this user's study records.",
+        StudyRecordExceptionCodeEnum.NO_PERMISSION_TO_VIEW_STUDY_RECORD,
+      );
     }
 
     return this.getStudyRecordByDateRepository.execute(dto);
