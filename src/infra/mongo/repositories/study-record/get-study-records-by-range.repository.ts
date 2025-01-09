@@ -31,6 +31,7 @@ export class GetStudyRecordsByRangeRepository
           $lte: endDate,
         },
       })
+      .sort({ date: 1 })
       .exec();
   }
 }
