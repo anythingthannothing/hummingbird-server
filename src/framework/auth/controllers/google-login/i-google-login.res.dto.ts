@@ -3,4 +3,5 @@ export interface IGoogleLoginResDto {
   refreshToken: string;
   expiresAt: number;
   isNewUser: boolean;
+  userId: number;
 }

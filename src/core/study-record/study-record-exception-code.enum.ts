@@ -1,0 +1,3 @@
+export enum StudyRecordExceptionCodeEnum {
+  NO_PERMISSION_TO_VIEW_STUDY_RECORD = 'NO_PERMISSION_TO_VIEW_STUDY_RECORD',
+}
