@@ -1,14 +1,17 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { HttpStatus, Inject, Injectable } from '@nestjs/common';
 
 import {
   GetStudyRecordsByRangeServiceInput,
+  IGetStudyRecordsByRangeRepository,
   IGetStudyRecordsByRangeService,
   StudyRecordDomain,
 } from '../../../core/study-record';
-import { IGetStudyRecordsByRangeRepository } from '../../../core/study-record';
 import { StudyRecordExceptionCodeEnum } from '../../../core/study-record/study-record-exception-code.enum';
 import { GetStudyRecordsByRangeRepository } from '../../../infra/mongo/repositories';
-import { throwForbiddenException } from '../../shared/exceptions';
+import {
+  CustomHttpException,
+  throwForbiddenException,
+} from '../../shared/exceptions';
 
 @Injectable()
 export class GetStudyRecordsByRangeService
