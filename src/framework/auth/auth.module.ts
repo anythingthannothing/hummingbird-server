@@ -7,21 +7,32 @@ import {
   UserEntity,
 } from '../../infra/mysql/entities';
 import {
+  CreateAppleAccountRepository,
   CreateGoogleAccountRepository,
   CreateRefreshTokenRepository,
   CreateUserRepository,
   GetAccountByUserIdRepository,
+  GetAppleAccountRepository,
   GetGoogleAccountRepository,
   GetRefreshTokenRepository,
   SoftDeleteAccountByAccountIdRepository,
 } from '../../infra/mysql/repositories';
 import { DbContextProvider, UnitOfWorkProvider } from '../shared/providers';
-import { GoogleLoginController, RefreshTokenController } from './controllers';
+import {
+  AppleLoginController,
+  GoogleLoginController,
+  RefreshTokenController,
+} from './controllers';
 import { CancelAccountController } from './controllers/cancel-account';
 import { JwtTokenProvider, RefreshTokenProvider } from './providers';
-import { CancelAccountByUserIdService, GoogleLoginService } from './services';
+import {
+  AppleLoginService,
+  CancelAccountByUserIdService,
+  GoogleLoginService,
+} from './services';
 
 const controllers = [
+  AppleLoginController,
   GoogleLoginController,
   RefreshTokenController,
   CancelAccountController,
@@ -44,13 +55,15 @@ const repositories = [
   GetRefreshTokenRepository,
   GetAccountByUserIdRepository,
   SoftDeleteAccountByAccountIdRepository,
+  GetAppleAccountRepository,
+  CreateAppleAccountRepository,
 ];
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([AccountEntity, UserEntity, RefreshTokenEntity]),
   ],
-  controllers,
-  providers: [...services, ...repositories, ...providers],
+  controllers: [...controllers],
+  providers: [...services, ...repositories, ...providers, AppleLoginService],
 })
 export class AuthModule {}

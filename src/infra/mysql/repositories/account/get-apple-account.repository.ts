@@ -10,21 +10,18 @@ import {
 import { AccountEntity } from '../../entities';
 
 @Injectable()
-export class GetGoogleAccountRepository implements IGetAccountRepository {
+export class GetAppleAccountRepository implements IGetAccountRepository {
   constructor(
     @InjectRepository(AccountEntity)
     private readonly accountRepository: Repository<AccountEntity>,
   ) {}
-
-  public async execute(googleId: string): Promise<AccountDomain | null> {
+  public async execute(appleId: string): Promise<AccountDomain | null> {
     return this.accountRepository.findOne({
       where: {
-        authProvider: AuthProviderEnum.google,
-        authProviderId: googleId,
+        authProvider: AuthProviderEnum.apple,
+        authProviderId: appleId,
       },
-      relations: {
-        user: true,
-      },
+      relations: { user: true },
       withDeleted: true,
     });
   }
