@@ -22,9 +22,9 @@ export class StudyRecordModel extends Document implements StudyRecordDomain {
 
   @Prop({
     required: true,
-    type: Number,
+    type: mongoose.Schema.Types.BigInt,
   })
-  userId: number;
+  userId: bigint;
 
   @Prop({ required: true, type: String })
   date: string;
@@ -60,3 +60,4 @@ export class StudyRecordModel extends Document implements StudyRecordDomain {
 export const StudyRecordSchema = SchemaFactory.createForClass(StudyRecordModel);
 
 StudyRecordSchema.index({ userId: 1, date: 1 }, { unique: true });
+StudyRecordSchema.index({ date: 1 });
