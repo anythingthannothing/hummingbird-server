@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { ICreateUserRepository, UserDomain } from 'src/core/user';
 
 import {
   CreateAccountRepositoryInput,
@@ -6,34 +7,34 @@ import {
   IGetAccountRepository,
 } from '../../../core/account';
 import {
-  GoogleLoginServiceInput,
-  IGoogleLoginService,
+  AppleLoginServiceInput,
+  AuthExceptionEnum,
+  IAppleLoginService,
 } from '../../../core/auth';
-import { AuthExceptionEnum } from '../../../core/auth';
-import { ICreateUserRepository, UserDomain } from '../../../core/user';
 import {
-  CreateGoogleAccountRepository,
   CreateUserRepository,
-  GetGoogleAccountRepository,
+  GetAppleAccountRepository,
 } from '../../../infra/mysql/repositories';
+import { CreateAppleAccountRepository } from '../../../infra/mysql/repositories';
 import { throwBadRequestException } from '../../shared/exceptions';
 import { UnitOfWorkProvider } from '../../shared/providers';
 
 @Injectable()
-export class GoogleLoginService implements IGoogleLoginService {
+export class AppleLoginService implements IAppleLoginService {
   constructor(
-    @Inject(GetGoogleAccountRepository)
-    private readonly getGoogleAccountRepository: IGetAccountRepository,
+    @Inject(GetAppleAccountRepository)
+    private readonly getAppleAccountRepository: IGetAccountRepository,
     private readonly unitOfWorkProvider: UnitOfWorkProvider,
     @Inject(CreateUserRepository)
     private readonly createUserRepository: ICreateUserRepository,
-    @Inject(CreateGoogleAccountRepository)
-    private readonly createGoogleAccountRepository: ICreateAccountRepository,
+    @Inject(CreateAppleAccountRepository)
+    private readonly createAppleAccountRepository: ICreateAccountRepository,
   ) {}
+
   public async execute(
-    dto: GoogleLoginServiceInput,
+    dto: AppleLoginServiceInput,
   ): Promise<UserDomain & { isNewUser: boolean }> {
-    const account = await this.getGoogleAccountRepository.execute(dto.googleId);
+    const account = await this.getAppleAccountRepository.execute(dto.appleId);
 
     // TODO: 회원탈퇴에 따른 처리방안 논의 후 구현
     if (account && account.deletedAt) {
@@ -49,9 +50,9 @@ export class GoogleLoginService implements IGoogleLoginService {
 
     const newUser = await this.unitOfWorkProvider.commit(async () => {
       const newUser = await this.createUserRepository.execute(dto.email);
-      await this.createGoogleAccountRepository.execute(
+      await this.createAppleAccountRepository.execute(
         new CreateAccountRepositoryInput(
-          dto.googleId,
+          dto.appleId,
           newUser.userId,
           dto.email,
         ),

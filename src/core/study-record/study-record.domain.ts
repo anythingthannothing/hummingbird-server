@@ -1,7 +1,7 @@
 export interface StudyRecordDomain {
   studyRecordId: string;
   date: string;
-  userId: number;
+  userId: bigint;
   goalDuration: number | null;
   totalDuration: number;
   studies: Study[];

@@ -6,18 +6,18 @@ import {
   GetUserByUserIdRepository,
   SaveUserRepository,
 } from '../../infra/mysql/repositories';
-import { UpdateUserController } from './controllers/update-profile';
-import { UpdateUserService } from './services';
+import { GetUserInfoController, UpdateUserController } from './controllers';
+import { GetUserInfoService, UpdateUserService } from './services';
 
-const controllers = [UpdateUserController];
+const controllers = [UpdateUserController, GetUserInfoController];
 
-const services = [UpdateUserService];
+const services = [UpdateUserService, GetUserInfoService];
 
 const repositories = [GetUserByUserIdRepository, SaveUserRepository];
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
-  controllers: controllers,
+  controllers: [...controllers],
   providers: [...services, ...repositories],
 })
 export class UserModule {}
