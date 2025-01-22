@@ -9,6 +9,8 @@ export interface StudyRecordDomain {
 
 export interface Study {
   title: string;
+  color: string;
+  order: number;
   duration: number;
   startAt: number;
   endAt: number;
